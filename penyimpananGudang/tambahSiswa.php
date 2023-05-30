@@ -13,15 +13,15 @@
                 include "./connection.php";
                 $query = mysqli_query($conn,"SELECT * FROM tbl_guru");
               ?>
-              <form>
+              <form method="post">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Depan</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nama Depan">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nama Depan" name="nama_depan">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Belakang</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nama Belakang">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nama Belakang" name="nama_belakang">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nama Wali Kelas</label>
@@ -39,7 +39,11 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">No Hp</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="No Hp">
+                    <input type="number" class="form-control" id="exampleInputEmail1" name="no_hp" placeholder="No Hp">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Tanggal Lahir</label>
+                    <input type="date" class="form-control" id="exampleInputEmail1" name="tanggal_lahir" placeholder="Tanggal Lahir">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Jenis Kelamin</label>
@@ -66,10 +70,24 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </div>
               </form>
             </div>
         </div>
     </div>
 </div>
+
+<?php
+
+if(isset($_POST['submit'])){
+  $nama_depan = $_POST['nama_depan'];
+  $nama_belakang = $_POST['nama_belakang'];
+  $walikelas = $_POST['walikelas'];
+  $no_hp = $_POST['no_hp'];
+  $tanggal_lahir = $_POST['tanggal_lahir'];
+  $gender = $_POST['gender'];
+  $alamat = $_POST['alamat'];
+
+  $query = mysqli_query($conn,"INSERT INTO tbl_siswa VALUES('','$walikelas','$nama_depan','$nama_belakang','$no_hp','$tanggal_lahir','$gender','$alamat')");
+}
